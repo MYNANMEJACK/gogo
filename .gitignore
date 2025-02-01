@@ -1,0 +1,29 @@
+# IDE/Editor files
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# PHP files
+/vendor/
+composer.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Log files
+*.log
+/logs/
+
+# Cache files
+/cache/
+
+# Temporary files
+/tmp/
+*.tmp 

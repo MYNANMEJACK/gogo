@@ -23,6 +23,8 @@ $admin_role = $_SESSION['admin_role'];
     <link href="styles.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- ApexCharts CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/apexcharts@3.41.0/dist/apexcharts.css" rel="stylesheet">
     <style>
         .sidebar {
             min-height: 100vh;
@@ -46,6 +48,26 @@ $admin_role = $_SESSION['admin_role'];
         .welcome-card {
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             color: white;
+        }
+        .stats-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .chart-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .stats-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -77,11 +99,154 @@ $admin_role = $_SESSION['admin_role'];
                     </div>
                     <!-- 可以添加更多卡片和功能 -->
                 </div>
+
+                <!-- 統計卡片 -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted">總訂單數</h6>
+                                        <h3 id="totalOrders">-</h3>
+                                    </div>
+                                    <div class="stats-icon bg-primary text-white">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted">總銷售額</h6>
+                                        <h3 id="totalSales">-</h3>
+                                    </div>
+                                    <div class="stats-icon bg-success text-white">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted">客戶數量</h6>
+                                        <h3 id="totalCustomers">-</h3>
+                                    </div>
+                                    <div class="stats-icon bg-info text-white">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted">產品數量</h6>
+                                        <h3 id="totalProducts">-</h3>
+                                    </div>
+                                    <div class="stats-icon bg-warning text-white">
+                                        <i class="fas fa-box"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 在統計卡片區域後添加 -->
+                <div class="row mb-4">
+                    <!-- 缺貨預警 -->
+                    <div class="col-md-6">
+                        <div class="card alert-card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>缺貨預警
+                                </h5>
+                            </div>
+                            <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                                <div id="stockOutAlert">
+                                    <div class="text-center py-3">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">加載中...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 低庫存預警 -->
+                    <div class="col-md-6">
+                        <div class="card alert-card border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-exclamation-circle me-2"></i>低庫存預警
+                                </h5>
+                            </div>
+                            <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                                <div id="lowStockAlert">
+                                    <div class="text-center py-3">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">加載中...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 修改圖表區域的佈局 -->
+                <div class="row">
+                    <!-- 產品銷售統計 -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card chart-card">
+                            <div class="card-body">
+                                <h5 class="card-title">熱門產品銷售統計</h5>
+                                <div id="productSalesChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 訂單狀態分布 -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card chart-card">
+                            <div class="card-body">
+                                <h5 class="card-title">訂單狀態分布</h5>
+                                <div id="orderStatusChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 每日銷售金額統計 -->
+                    <div class="col-md-12">
+                        <div class="card chart-card">
+                            <div class="card-body">
+                                <h5 class="card-title">每日銷售金額統計</h5>
+                                <div id="dailySalesChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ApexCharts JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.41.0/dist/apexcharts.min.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html> 

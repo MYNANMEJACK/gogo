@@ -30,6 +30,21 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'image_management.php' ? 'active' : ''; ?>" href="image_management.php">
+                    <i class="fas fa-images me-2"></i>圖片管理
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'pickup_locations.php' ? 'active' : ''; ?>" href="pickup_locations.php">
+                    <i class="fas fa-map-marker-alt me-2"></i>自提點管理
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'dish_management.php' ? 'active' : ''; ?>" href="dish_management.php">
+                    <i class="fas fa-utensils me-2"></i>菜式管理
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="logout.php">
                     <i class="fas fa-sign-out-alt me-2"></i>登出
                 </a>

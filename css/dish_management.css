@@ -1,0 +1,116 @@
+/* Select2 容器樣式 */
+.select2-container {
+    width: 100% !important;
+    z-index: 1056 !important;
+}
+
+.select2-dropdown {
+    z-index: 1056 !important;
+    border: 1px solid #ced4da;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 選擇框樣式 */
+.select2-container .select2-selection--multiple {
+    min-height: 100px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* 選中標籤樣式 */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #0062ff;
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+.select2-container--default .select2-selection__choice__remove {
+    color: white;
+    margin-right: 5px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #0062ff;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    margin-top: 7px;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+    max-height: 250px;
+}
+
+/* 產品選項樣式 */
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-price {
+    color: #0062ff;
+    font-weight: 500;
+}
+
+.product-stock {
+    font-size: 0.9em;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.stock-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.stock-low {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* 表格樣式 */
+.table > :not(caption) > * > * {
+    vertical-align: middle;
+}
+
+/* 按鈕樣式 */
+.btn-icon {
+    padding: 0.5rem;
+    line-height: 1;
+    border-radius: 6px;
+}
+
+/* 模態框樣式 */
+.modal-header {
+    background: linear-gradient(135deg, #0062ff 0%, #0056e0 100%);
+    color: white;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* 確保模態框內的 Select2 正確顯示 */
+.modal-body {
+    overflow: visible !important;
+    max-height: calc(100vh - 200px);
+}
+
+.modal-content {
+    overflow: visible !important;
+} 
