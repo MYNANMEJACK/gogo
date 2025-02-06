@@ -1,10 +1,30 @@
 // 加載客戶列表
 function loadCustomers() {
     fetch('api/get_customers.php')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            // 檢查響應的 content-type
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new TypeError("返回的數據不是 JSON 格式!");
+            }
+            return response.json();
+        })
         .then(data => {
             const tbody = document.getElementById('customerTableBody');
             tbody.innerHTML = '';
+            
+            // 檢查返回的數據
+            if (!Array.isArray(data)) {
+                // 如果數據包含在 data 字段中
+                if (data.data && Array.isArray(data.data)) {
+                    data = data.data;
+                } else {
+                    throw new Error('返回的數據格式不正確');
+                }
+            }
             
             data.forEach(customer => {
                 const tr = document.createElement('tr');
@@ -28,8 +48,15 @@ function loadCustomers() {
             });
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('加載客戶列表失敗');
+            console.error('加載客戶數據時發生錯誤:', error);
+            const tbody = document.getElementById('customerTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center text-danger">
+                        加載數據失敗: ${error.message}
+                    </td>
+                </tr>
+            `;
         });
 }
 
@@ -50,7 +77,7 @@ function deleteCustomer(customerId) {
         return;
     }
 
-    fetch('api/delete_customer.php', {
+    fetch('api/delete_user_account.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -61,7 +88,7 @@ function deleteCustomer(customerId) {
     .then(data => {
         if (data.success) {
             alert('客戶已成功刪除');
-            loadCustomers(); // 重新加載客戶列表
+            loadCustomers();
         } else {
             alert(data.message || '刪除失敗');
         }
@@ -78,7 +105,7 @@ function resetPassword(customerId) {
         return;
     }
 
-    fetch('api/reset_password.php', {
+    fetch('api/reset_user_password.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -88,7 +115,7 @@ function resetPassword(customerId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('密碼已成功重置');
+            alert(data.message || '密碼已成功重置');
         } else {
             alert(data.message || '重置失敗');
         }
