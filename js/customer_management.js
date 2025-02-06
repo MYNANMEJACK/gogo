@@ -16,8 +16,8 @@ function loadCustomers() {
                     <td>${customer.job || '-'}</td>
                     <td>${customer.gender === 'male' ? '男' : '女'}</td>
                     <td>
-                        <button class="btn btn-sm btn-info me-1" onclick="viewOrders(${customer.id})">
-                            <i class="fas fa-shopping-cart"></i>
+                        <button class="btn btn-sm btn-danger me-1" onclick="deleteCustomer(${customer.id})">
+                            <i class="fas fa-trash"></i>
                         </button>
                         <button class="btn btn-sm btn-warning" onclick="resetPassword(${customer.id})">
                             <i class="fas fa-key"></i>
@@ -44,18 +44,13 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
     });
 });
 
-// 查看客戶訂單
-function viewOrders(customerId) {
-    window.location.href = `order_management.php?customer_id=${customerId}`;
-}
-
-// 重置密碼
-function resetPassword(customerId) {
-    if (!confirm('確定要重置該客戶的密碼嗎？')) {
+// 刪除客戶
+function deleteCustomer(customerId) {
+    if (!confirm('確定要刪除該客戶嗎？此操作無法撤銷。')) {
         return;
     }
 
-    fetch('api/reset_customer_password.php', {
+    fetch('api/delete_customer.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -65,9 +60,10 @@ function resetPassword(customerId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('密碼已重置');
+            alert('客戶已成功刪除');
+            loadCustomers(); // 重新加載客戶列表
         } else {
-            alert(data.message || '重置失敗');
+            alert(data.message || '刪除失敗');
         }
     })
     .catch(error => {
