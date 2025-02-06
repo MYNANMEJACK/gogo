@@ -72,5 +72,32 @@ function deleteCustomer(customerId) {
     });
 }
 
+// 重置密碼
+function resetPassword(customerId) {
+    if (!confirm('確定要重置該客戶的密碼嗎？')) {
+        return;
+    }
+
+    fetch('api/reset_password.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ customerId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('密碼已成功重置');
+        } else {
+            alert(data.message || '重置失敗');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('系統錯誤');
+    });
+}
+
 // 頁面加載時獲取客戶列表
 document.addEventListener('DOMContentLoaded', loadCustomers); 

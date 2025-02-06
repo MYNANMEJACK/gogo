@@ -1,6 +1,6 @@
 <div class="col-md-3 col-lg-2 px-0 sidebar">
     <div class="d-flex flex-column p-3">
-        <h4 class="text-center mb-4">用戶登錄</h4>
+        <h4 class="text-center mb-4">GoGo admin</h4>
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'admin_dashboard.php' ? 'active' : ''; ?>" href="admin_dashboard.php">

@@ -1,25 +1,32 @@
-# IDE/Editor files
-.vscode/
+# IDE 和編輯器文件
 .idea/
-*.sublime-*
+.vscode/
 *.swp
+*.swo
 
-# System files
+# 配置文件
+includes/config.php
+
+# 系統文件
 .DS_Store
 Thumbs.db
 
+# 日誌文件
+*.log
+
+# 依賴目錄
+vendor/
+node_modules/
+
+# 環境配置
+.env
+
 # PHP files
-/vendor/
 composer.lock
 
 # Environment files
-.env
 .env.local
 .env.*.local
-
-# Log files
-*.log
-/logs/
 
 # Cache files
 /cache/
