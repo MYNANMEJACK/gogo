@@ -1,0 +1,103 @@
+/* 產品圖片樣式 */
+.product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 表格樣式 */
+.table > :not(caption) > * > * {
+    vertical-align: middle;
+}
+
+/* 標籤樣式 */
+.badge-custom {
+    font-size: 0.85em;
+    padding: 0.35em 0.65em;
+    border-radius: 30px;
+}
+
+/* 庫存狀態樣式 */
+.stock-warning {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.stock-ok {
+    color: #198754;
+    font-weight: 600;
+}
+
+/* 搜索框樣式 */
+.search-box {
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.input-group-text {
+    border-right: none;
+}
+
+/* 按鈕樣式 */
+.btn-icon {
+    padding: 0.5rem;
+    line-height: 1;
+    border-radius: 6px;
+}
+
+/* 表格懸停效果 */
+.table-hover tbody tr:hover {
+    background-color: rgba(0,98,255,0.05);
+}
+
+/* 模態框樣式 */
+.modal-header {
+    background: linear-gradient(135deg, #0062ff 0%, #0056e0 100%);
+    color: white;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* 圖片預覽樣式 */
+.preview-image {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 表單控件樣式 */
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.form-select:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .d-flex.gap-3 {
+        flex-wrap: wrap;
+    }
+    
+    .search-box {
+        min-width: 100%;
+    }
+    
+    #typeFilter {
+        min-width: 100%;
+    }
+    
+    .btn-primary {
+        width: 100%;
+    }
+} 

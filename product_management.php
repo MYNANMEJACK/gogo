@@ -14,58 +14,8 @@ if (!isset($_SESSION['admin_id'])) {
     <title>產品管理</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link href="css/product_management.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .product-img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .table > :not(caption) > * > * {
-            vertical-align: middle;
-        }
-        .badge-custom {
-            font-size: 0.85em;
-            padding: 0.35em 0.65em;
-            border-radius: 30px;
-        }
-        .stock-warning {
-            color: #dc3545;
-            font-weight: 600;
-        }
-        .stock-ok {
-            color: #198754;
-            font-weight: 600;
-        }
-        .search-box {
-            max-width: 300px;
-        }
-        .btn-icon {
-            padding: 0.5rem;
-            line-height: 1;
-            border-radius: 6px;
-        }
-        .table-hover tbody tr:hover {
-            background-color: rgba(0,98,255,0.05);
-        }
-        .modal-header {
-            background: linear-gradient(135deg, #0062ff 0%, #0056e0 100%);
-            color: white;
-        }
-        .modal-header .btn-close {
-            filter: brightness(0) invert(1);
-        }
-        .preview-image {
-            max-width: 200px;
-            max-height: 200px;
-            object-fit: contain;
-            margin-top: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-    </style>
 </head>
 <body class="admin-page">
     <div class="container-fluid">
@@ -76,16 +26,18 @@ if (!isset($_SESSION['admin_id'])) {
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2>產品管理</h2>
                     <div class="d-flex gap-3 align-items-center">
-                        <select id="typeFilter" class="form-select">
-                            <option value="">所有類型</option>
-                            <option value="food">食品</option>
-                            <option value="vegetable">蔬菜</option>
-                            <option value="drink">飲品</option>
-                            <option value="life">生活用品</option>
-                        </select>
+                        <div class="dropdown">
+                            <select id="typeFilter" class="form-select" style="min-width: 150px;">
+                                <option value="">所有類型</option>
+                                <option value="food">食品</option>
+                                <option value="vegetable">蔬菜</option>
+                                <option value="drink">飲品</option>
+                                <option value="life">生活用品</option>
+                            </select>
+                        </div>
                         <div class="search-box">
                             <div class="input-group">
-                                <span class="input-group-text bg-white">
+                                <span class="input-group-text bg-white border-end-0">
                                     <i class="fas fa-search text-muted"></i>
                                 </span>
                                 <input type="text" id="searchInput" class="form-control border-start-0" placeholder="搜索產品...">

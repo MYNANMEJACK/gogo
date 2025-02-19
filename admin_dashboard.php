@@ -18,58 +18,11 @@ $admin_role = $_SESSION['admin_role'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理面板</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="css/admin_dashboard.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- ApexCharts CSS -->
     <link href="https://cdn.jsdelivr.net/npm/apexcharts@3.41.0/dist/apexcharts.css" rel="stylesheet">
-    <style>
-        .sidebar {
-            min-height: 100vh;
-            background: #2c3e50;
-            color: white;
-        }
-        .nav-link {
-            color: rgba(255,255,255,.8);
-        }
-        .nav-link:hover {
-            color: white;
-            background: rgba(255,255,255,.1);
-        }
-        .nav-link.active {
-            background: rgba(255,255,255,.2);
-            color: white;
-        }
-        .content {
-            padding: 20px;
-        }
-        .welcome-card {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: white;
-        }
-        .stats-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .chart-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .stats-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-    </style>
 </head>
 <body class="admin-page">
     <div class="container-fluid">
