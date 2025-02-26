@@ -1,10 +1,9 @@
 <?php
 $db_config = [
-    'host' => 'mysql.railway.internal',  // Railway 内部 MySQL 连接
-    'dbname' => 'railway',  
-    'username' => 'root',  
-    'password' => 'QPdujaJNzohxgdmJJMFEegWWOAdNehdJ',  
-    'port' => 3306  
+    'host' => 'localhost',
+    'dbname' => 'gogoapp',
+    'username' => 'root',
+    'password' => ''
 ];
 
 try {
