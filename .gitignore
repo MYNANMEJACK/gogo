@@ -1,0 +1,36 @@
+# IDE 和編輯器文件
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 配置文件
+includes/config.php
+
+# 系統文件
+.DS_Store
+Thumbs.db
+
+# 日誌文件
+*.log
+
+# 依賴目錄
+vendor/
+node_modules/
+
+# 環境配置
+.env
+
+# PHP files
+composer.lock
+
+# Environment files
+.env.local
+.env.*.local
+
+# Cache files
+/cache/
+
+# Temporary files
+/tmp/
+*.tmp 
